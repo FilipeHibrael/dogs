@@ -3,6 +3,7 @@ body {
   --type-Second: 'Spectral', Georgia;
   font-family: var(--type-first);
   color: #333;
+  padding-top: 4rem;
 }
 
 * {
@@ -13,6 +14,10 @@ body {
 
 ul, li {
     list-style: none;
+}
+
+a {
+    text-decoration: none;
 }
 
 img {
@@ -31,5 +36,4 @@ button, input {
     max-width: 50rem;
     padding: 0 1rem;
     margin: 0 auto;
-    
 }
