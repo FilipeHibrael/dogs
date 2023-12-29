@@ -21,7 +21,7 @@
   display: flex;
 }
 
-.photo img {
+.photo > div {
   grid-area: 1/1;
 }
 
