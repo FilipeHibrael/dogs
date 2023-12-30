@@ -5,7 +5,7 @@ import Feed from '../Feed/Feed'
 function UserProfile() {
     const {user} = useParams()
   return (
-    <section className='container mainSection'>
+    <section className='container mainContainer'>
         <h1 className='title'>{user}</h1>
         <Feed user={user}/>
     </section>
