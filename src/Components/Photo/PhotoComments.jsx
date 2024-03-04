@@ -1,10 +1,10 @@
 import React from 'react';
-import { UserContext } from '../../UserContext';
 import PhotoCommentsForm from './PhotoCommentsForm';
 import styles from './PhotoComments.module.css';
+import { useSelector } from 'react-redux';
 
 function PhotoComments(props) {
-  const { login } = React.useContext(UserContext);
+  const { data } = useSelector((state) => state.user);
   const [comments, setComments] = React.useState(() => props.comments);
   const commentsSection = React.useRef(null);
 
@@ -14,7 +14,10 @@ function PhotoComments(props) {
 
   return (
     <>
-      <ul ref={commentsSection} className={`${styles.comments} ${props.single ? styles.single : ''}`}>
+      <ul
+        ref={commentsSection}
+        className={`${styles.comments} ${props.single ? styles.single : ''}`}
+      >
         {comments.map((comment) => (
           <li key={comment.comment_ID}>
             <b>{comment.comment_author}: </b>
@@ -22,7 +25,13 @@ function PhotoComments(props) {
           </li>
         ))}
       </ul>
-      {login && <PhotoCommentsForm id={props.id} setComments={setComments} single={props.single} />}
+      {data && (
+        <PhotoCommentsForm
+          id={props.id}
+          setComments={setComments}
+          single={props.single}
+        />
+      )}
     </>
   );
 }

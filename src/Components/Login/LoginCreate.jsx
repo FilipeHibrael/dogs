@@ -4,16 +4,17 @@ import Button from '../Forms/Button';
 import Error from '../Helper/Error';
 import useForm from '../../Hooks/useForm';
 import { USER_POST } from '../../api';
-import { UserContext } from '../../UserContext';
 import useFetch from '../../Hooks/useFetch';
 import Head from '../Helper/Head';
+import { useDispatch } from 'react-redux';
+import { userLogin } from '../../store/user';
 
 function LoginCreate() {
   const username = useForm();
   const email = useForm('email');
   const password = useForm();
 
-  const { userLogin } = React.useContext(UserContext);
+  const dispatch = useDispatch();
   const { loading, error, request } = useFetch();
 
   async function handleSubmit(event) {
@@ -24,12 +25,15 @@ function LoginCreate() {
       password: password.value,
     });
     const { response } = await request(url, options);
-    if (response.ok) userLogin(username.value, password.value);
+    if (response.ok)
+      dispatch(
+        userLogin({ username: username.value, password: password.value })
+      );
   }
 
   return (
     <section className="animeLeft">
-      <Head title='Crie sua conta' />
+      <Head title="Crie sua conta" />
       <h1 className="title">Cadastre-se</h1>
       <form onSubmit={handleSubmit}>
         <Input label="Usuário" type="text" name="username" {...username} />

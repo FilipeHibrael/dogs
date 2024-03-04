@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import Dogs from '../Assets/dogs.svg?react';
-import { UserContext } from '../UserContext';
 import { useSelector } from 'react-redux';
 
 function Header() {
